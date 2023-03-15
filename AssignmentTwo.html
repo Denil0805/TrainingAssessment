@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+       
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <style>
+
+        body {
+            background-color: rgb(173, 169, 169);
+        }
+
+        .formContainer {
+            width: 50%;
+            margin-left: 300px;
+            padding: 10px;
+        }
+
+        .form-control {
+            width: 70%;
+        }
+
+        .FormHeader {
+            font-size: 35px;
+            font-weight: bold;
+            font-style: italic;
+        }
+        
+        [class*="Pty"] {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .form-check-label {
+            margin: 10px;
+        }
+
+        .Buttons {
+            display: flex;
+            margin: 10px 0px 0px 0px;
+        }
+
+        .Reset {
+            margin-left: 10px;
+        }
+        .displayBadge
+        {
+            display: none;
+        }
+    </style>
+     <script>
+        function validate()
+        {
+        // alert("Form is submited");
+        if(document.empForm.Name.value=="")
+        {
+            alert("Employee Name is required!");
+            document.empForm.Name.focus();
+            return false;
+        }    
+        if(document.empForm.Id.value=="")
+        {
+            alert("Employee Id is required!");
+            document.empForm.Id.focus();
+            return false;
+        }
+        let empId = document.empForm.Id.value;
+        if(!empId.match(/([EeMmPp])+([0-9]{3})/))
+        {
+            alert("Employee must folloe the format : EMP### | emp###");
+            document.empForm.Id.focus();
+            return false;
+        }
+        if(document.empForm.Gender.value=="")
+        {
+            alert("Employee gender is requied!");
+            return false;
+        }
+        if(document.empForm.Designation.value=="" || document.empForm.Designation.value=="-1")
+        {
+            alert("Employee Designation is required!");
+            document.empForm.Designation.focus();
+            return false;
+        }
+        let mailChk = document.empForm.Email.value;
+        if(document.empForm.Email.value=="")
+        {
+            alert("Employee Email id is required!");
+            document.empForm.Email.focus();
+            return false;
+        }
+
+        if(!mailChk.match(/([^_\.0-9a-zA-Z])+([@zucisystems])+([.com]{3})/))
+        {
+            alert("Mail id is out of the organization");
+            document.empForm.Email.focus();
+            return false;
+        }
+        let pwd = document.empForm.Psw.value;
+        let conf = document.empForm.ConPsw.value;
+        if(document.empForm.Psw.value=="")
+        {
+            alert("Please enter your password!");
+            document.empForm.Psw.focus();
+            return false;
+        }
+        if(document.empForm.ConPsw.value=="")
+        {
+            alert("Please confirm your password!");
+            document.empForm.ConPsw.focus();
+            return false;
+        }
+        if(conf!=pwd)
+        {
+            alert("Password Incorret!");
+            document.empForm.ConPsw.focus();
+            return false;
+        }
+
+        alert("Your Registration has been complete!");
+        return true;
+        }
+
+        let timeout;
+        let password = document.getElementById("empPassword");
+
+        let strengthBadge = document.getElementById("passwordErr");
+
+        let strongPassword = new RegExp ('(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})');
+
+        let mediumPassword = new RegExp ('((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,}))|((?=.*[A-Z])(?=.*[a-z])(?=.*[^A_Za-z0-9])(?=.{8,}))');
+
+        function PasswordCheck(PasswordParameter)
+        {
+            if(strongPassword.test(PasswordParameter))
+            {
+                strengthBadge.style.backgroundColor = "green";
+                strengthBadge.textContent = "Password strength is strong";
+            }
+            else if(mediumPassword.test(PasswordParameter))
+            {
+                strengthBadge.style.backgroundColor = "orange";
+                strengthBadge.textContent = "Password strength is medium!";
+            }
+            else{
+                strengthBadge.style.backgroundColor = "red";
+                strengthBadge.textContent = "Password Strength is weak";
+            }
+        }
+
+        password.addEventListener("input",()=>{
+            strengthBadge.style.display = "block";
+            clearTimeout(timeout);
+            timeout = setTimeout(()=>PasswordCheck(password.value),500);
+            if(password.value.length!=0)
+            {
+                strengthBadge.style.display!="block";
+            }
+            else
+            {
+                strengthBadge.style.display="none";
+            }
+        });
+        
+    </script>
+
+</head>
+  <body>
+  
+    <div class="formContainer">
+        <div class="FormHeader">
+            Employee Details
+        </div>
+
+        <form action="" name="empForm" method="get" onsubmit="return (validate());" >
+            <div class="EmployeeName">
+                <div class="NamePty">Employee Name :</div>
+                <div class="NameBox"> 
+                    <input type="text" name="Name" id="empName" class="form-control" autocomplete="off"><span for="" id="nameErr" ></span>
+                   
+                </div>
+            </div>
+
+            <div class="EmployeeId">
+                <div class="IdPty">Employee Id :</div>
+                <div class="IdBox">
+                    <input type="text" name="Id" id="empId" class="form-control" maxlength="6"> <span for="" id="idErr"  ></span>
+                   
+                </div>
+            </div>
+            <div class="EmployeeGender">
+                <div class="GenderPty">Gender :</div>
+                <div class="GenderBox">
+                    <div class="form-check">
+
+                        <label class="form-check-label">
+                            <input type="radio" name="Gender" id="empGender" value="Male" /> Male
+                            <input type="radio" name="Gender" id="empGender" value="Female" /> Female
+                            <input type="radio" name="Gender" id="empGender" value="Other" /> Other
+                            <span for="" id="genderErr"></span>
+                        </label>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="EmployeeDesignation">
+                <div class="DesignationPty">Employee Designation :</div>
+                <div class="DesignaionBox">
+
+                    <div class="form-group">
+                        <select class="form-control" name="Designation" id="empDesignation">
+                            <option value="-1">[Choose here]</option>
+                            <option value="1">Manager</option>
+                            <option value="2">Analyst</option>
+                            <option value="3">Developer</option>
+                            <option value="4">Testing</option>
+
+                        </select>
+                        <span for="" id="designationErr"></span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="EmployeeEmail">
+                <div class="EmailPty">Email :</div>
+                <div class="EmailBox">
+                    <input type="text" name="Email" id="empEmail" class="form-control"> <span for="" id="emailErr"></span>
+                   
+                </div>
+            </div>
+
+            <div class="EmployeePasswords">
+                <div class="Password">
+                    <div class="PasswordPty">Password :</div>
+                    <div class="PasswordBox">
+                        <input type="password" name="Psw" id="empPassword" class="form-control"> <span for="" id="passwordErr" class="badge displayBadge">Weak</span>
+                       
+                    </div>
+                </div>
+                <div class="ConfirmPassword">
+                    <div class="ConfPasswordPty">Confirm Password :</div>
+                    <div class="ConfPasswordBox">
+                        <input type="password" name="ConPsw" id="empConfPassword" class="form-control"><span for="" id="confPasswordErr"></span>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="Buttons">
+                <div class="Submit">
+                    <input type="submit" value="Submit" class="btn btn-primary">
+                </div>
+                <div class="Reset">
+                    <input type="reset" value="Clear" class="btn btn-danger">
+                </div>
+            </div>
+
+            <div class="ShowDetails">
+
+            </div>
+
+
+        </form>
+    </div>
+
+   
+
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        tr:nth-child(2n)
+        {
+            background-color: rgb(175, 244, 244);
+        }
+        table
+        {
+            border-collapse: collapse;
+            text-align: center;
+            width: 500px;
+        }
+        td
+        {
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div id="Container">
+    <script>
+        let emp = [
+        {Name : "NithishKumar", Id : "EMP01", Gender : "Male", Salary : "25000", Designation : "Developer"},
+        {Name : "KevinJose", Id : "EMP02", Gender : "Male", Salary : "22000", Designation : "SystemAdmin"},
+        {Name : "Santhiya", Id : "EMP03", Gender : "Female", Salary : "26000", Designation : "Testing"},
+        {Name : "DineshKumar", Id : "EMP04", Gender : "Male", Salary : "30000", Designation : "Testing"},
+
+        ];
+
+
+    document.createElement('div');
+    document.write("<table border='1px'>");
+    for(let i = 0;i<emp.length;i++)
+    {
+      
+            document.write("<tr>");
+                document.write(`<td>${emp[i].Name}</td><td>${emp[i].Id}</td><td>${emp[i].Gender}</td><td>${emp[i].Salary}</td><td>${emp[i].Designation}</td>`);
+                document.write("</tr>");
+               
+    }
+    
+    document.write("</table>");
+
+   
+
+    // var  empFilter = document.createElement("div");
+    document.write("Male employees are :<br/>");
+    var male = emp.filter((u) => u.Gender==="Male");
+    for(var j=0;j<emp.length;j++)
+    {
+        document.write(`${j+1}. ${male[j].Name} <br/>`);
+    }
+
+    
+
+  
+    </script>
+
+    
+</div>
+<br/>
+
+<div class="FemaleEmployee">
+    <script>
+         document.write("Female employees are : <br/>");   
+var female = emp.filter((f) => f.Gender === "Female");
+
+for(var i=0;i<emp.length;i++)
+{
+   document.write(`${female[i].Name}<br/>`);
+}
+    </script>
+</div>
+<br/>
+
+
+<div class="Developer">
+    <script>
+         document.write("Developers employees are : <br/>");   
+var female = emp.filter((f) => f.Designation === "Developer");
+
+for(var i=0;i<emp.length;i++)
+{
+    document.write(`${female[i].Name}<br/>`);
+}
+    </script>
+</div>
+</body>
+</html>
