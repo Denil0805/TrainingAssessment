@@ -1,0 +1,14 @@
+.Machines
+{
+    display: flex;
+    gap: 2rem;
+}
+
+.btn-danger
+{
+    margin-top: 23px;
+}
+.btn-info
+{
+    margin:0px 10px 0px 10px;
+}
